@@ -2,6 +2,8 @@ package main
 
 import (
 	"bytes"
+	"crypto/sha256"
+	"fmt"
 	"math/rand"
 	"os"
 	"os/exec"
@@ -94,4 +96,12 @@ func Exists(path string) bool {
 		return false
 	}
 	return true
+}
+
+//Hash function that applies sha256 to input mac.
+func Hash(macadres string) string {
+	uitkomst := sha256.Sum256([]byte(macadres))
+
+	a := fmt.Sprintf("%x", uitkomst)
+	return a
 }

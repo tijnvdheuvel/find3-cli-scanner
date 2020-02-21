@@ -80,7 +80,10 @@ func ReverseScan(scanTime time.Duration) (sensors models.SensorData, err error) 
 						break
 					}
 					if doAllPackets || receiver == "ff:ff:ff:ff:ff:ff" {
-						address = transmitter
+						//Hash the mac Adress of transmitter using the sha256 method.
+						// Original: " address = transmitter"
+
+						address = utils.hash(transmitter)
 					}
 				}
 			}
